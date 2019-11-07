@@ -15,29 +15,51 @@
 float ballPosX = 250;
 float ballPosY = 687;
 float check = 0;
+int count = 0;
+int time = 600;
 
 void setup(){
   size(500, 700);
 }
 
 void draw(){
-  background(0);
-  fill(255);
-  ellipse(ballPosX, ballPosY, 25, 25);
-  if(ballPosY <= 13){
-    //end (continue holding note until all others have ended)
-  }
-  else{
-      check = random(0.00001, 100);
-      if (check > map((674-ballPosY), 0, 674, 0, 25)){
-          ballPosY = ballPosY-10;
-          //println("Rise:" + countRise);
-          delay(500);
+  if(count < time){
+    background(0);
+    fill(255);
+    ellipse(ballPosX, ballPosY, 25, 25);
+    if(ballPosY <= 13){
+      //end (continue holding note until all others have ended)
+    }
+    else{
+        check = random(0.00001, 100);
+        if (check > map((674-ballPosY), 0, 674, 0, 25)){
+            ballPosY = ballPosY-10;
+            //println("Rise:" + countRise);
+            delay(500);
+          }
         }
-      }
-  if(check <= map((674-ballPosY), 0, 674, 0, 25)){
-      ballPosY = ballPosY+int(random(1, 100)); 
-      delay(500);         
+    if(check <= map((674-ballPosY), 0, 674, 0, 25)){
+        ballPosY = ballPosY+int(random(1, 100)); 
+        delay(500);     
+        
+    }
+    count++;
+    println(count);
   }
+  if (count >= time){
+    background(0);
+    fill(255);
+    ellipse(ballPosX, ballPosY, 25, 25);
+        if(ballPosY <= 13){
+        println("if");
+    }
+    else{
+      
+        ballPosY = ballPosY-10;
+        //println("Rise:" + countRise);
+        delay(500);
+        println("else");
+      }
+    }
 }
         
